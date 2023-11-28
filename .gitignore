@@ -1,0 +1,11 @@
+.cproject
+.idea
+.lock-wscript
+.DS_Store
+.project
+.vscode
+node_modules/
+src/build/
+src/node_modules/
+bin-*/
+*.log

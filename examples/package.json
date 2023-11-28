@@ -1,0 +1,14 @@
+{
+	"name": "example",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"start": "npx ts-node-esm ./main.ts"
+	},
+	"dependencies": {
+		"iohook-raub": "file:..",
+		"tsconfig-paths": "^4.2.0",
+		"ts-node": "^10.9.1"
+	}
+}

@@ -1,0 +1,54 @@
+{
+	"author": "Luis Blanco <luisblanco1337@gmail.com>",
+	"name": "iohook-raub",
+	"version": "0.0.1",
+	"description": "Node.js IO hook",
+	"license": "MIT",
+	"main": "index.js",
+	"keywords": [
+		"hook",
+		"listener",
+		"mousemove",
+		"keypress",
+		"keyup",
+		"global",
+		"shortcut"
+	],
+	"files": [
+		"js",
+		"core.js",
+		"index.js",
+		"index.d.ts",
+		"install.js",
+		"LICENSE",
+		"package.json",
+		"README.md"
+	],
+	"engines": {
+		"node": ">=18.16.0",
+		"npm": ">=9.5.1"
+	},
+	"scripts": {
+		"postinstall": "node install",
+		"eslint": "eslint .",
+		"build": "cd src && node-gyp rebuild -j max --silent && node -e \"require('addon-tools-raub').cpbin('iohook')\" && cd ..",
+		"build-only": "cd src && node-gyp build -j max --silent && node -e \"require('addon-tools-raub').cpbin('iohook')\" && cd ..",
+		"test": "node --test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/luis-si/iohook-raub.git"
+	},
+	"dependencies": {
+		"addon-tools-raub": "^7.4.0",
+		"deps-uiohook-raub": "^0.0.1",
+		"segfault-raub": "^2.1.2"
+	},
+	"devDependencies": {
+		"@types/node": "^20.8.3",
+		"eslint": "^8.51.0",
+		"eslint-plugin-node": "^11.1.0",
+		"node-addon-api": "^7.0.0",
+		"typescript": "^5.2.2"
+	}
+}
