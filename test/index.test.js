@@ -6,8 +6,8 @@ const { describe, it, after } = require('node:test');
 const iohook = require('..');
 
 const methods = [
-	'start', 'stop', 'setDebug', 'useRawcode', 'registerShortcut',
-	'unregisterShortcut', 'unregisterShortcut', 'unregisterAllShortcuts',
+	'start', 'stop', 'setDebug', 'useRawcode', 'shortcut',
+	'removeShortcut', 'clearShortcuts',
 ];
 
 describe('iohook', () => {
