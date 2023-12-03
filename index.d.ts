@@ -2,18 +2,59 @@ declare module "iohook-raub" {
 	
 	type EventEmitter = import('node:events').EventEmitter;
 	
-	// type TEvent = {
-	// 	type: string;
-	// 	keychar?: number;
-	// 	keycode?: number;
-	// 	rawcode?: number;
-	// 	button?: number;
-	// 	clicks?: number;
-	// 	x?: number;
-	// 	y?: number;
-	// }
+	type THookEventCommon = {
+		mask: number;
+		time: number;
+	};
 	
-	type IoHook = EventEmitter & {
+	type TEventNameKeyboard = 'keypress' | 'keydown' | 'keyup';
+	
+	type TEventNameMouse = 'mouseclick' | 'mousedown' | 'mouseup' | 'mousemove' | 'mousedrag';
+	
+	type TEventNameWheel = 'mousewheel';
+	
+	type THookEventKeyboard = THookEventCommon & {
+		type: TEventNameKeyboard;
+		shiftKey: boolean;
+		altKey: boolean;
+		ctrlKey: boolean;
+		metaKey: boolean;
+		keychar: number;
+		keycode: number;
+		rawcode: number;
+	};
+	
+	type THookEventMouse = THookEventCommon & {
+		type: TEventNameMouse;
+		button: number;
+		clicks: number;
+		x: number;
+		y: number;
+	};
+	
+	type THookEventWheel = THookEventCommon & {
+		type: TEventNameWheel;
+		amount: number;
+		clicks: number;
+		direction: number;
+		rotation: number;
+		x: number;
+		y: number;
+	};
+	
+	interface TPossibleSubscriptions {
+		addListener(eventName: TEventNameKeyboard, listener: (event: THookEventKeyboard) => void): this;
+		addListener(eventName: TEventNameMouse, listener: (event: THookEventMouse) => void): this;
+		addListener(eventName: TEventNameWheel, listener: (event: THookEventWheel) => void): this;
+		on(eventName: TEventNameKeyboard, listener: (event: THookEventKeyboard) => void): this;
+		on(eventName: TEventNameMouse, listener: (event: THookEventMouse) => void): this;
+		on(eventName: TEventNameWheel, listener: (event: THookEventWheel) => void): this;
+		once(eventName: TEventNameKeyboard, listener: (event: THookEventKeyboard) => void): this;
+		once(eventName: TEventNameMouse, listener: (event: THookEventMouse) => void): this;
+		once(eventName: TEventNameWheel, listener: (event: THookEventWheel) => void): this;
+	}
+	
+	type IoHook = Omit<EventEmitter, 'addListener' | 'on' | 'once'> & TPossibleSubscriptions & {
 		/**
 		 * Start hooking engine. Call it when you ready to receive events
 		 * If `enableLogger` is true, module will publish debug information to stdout
@@ -40,34 +81,34 @@ declare module "iohook-raub" {
 		useRawcode(using: boolean): void;
 		
 		/**
-		 * Register global shortcut. When all keys in keys array pressed, callback will be called
-		 * @param {Array<string|number>} keys Array of keycodes
-		 * @param {Function} callback Callback for when shortcut pressed
-		 * @param {Function} [releaseCallback] Callback for when shortcut released
-		 * @return {number} ShortcutId for unregister
+		 * Register a global shortcut. When all keys in keys array pressed, callback will be called
+		 * 
+		 * @returns Function that removes this specific shortcut.
 		 */
-		registerShortcut(
-			keys: Array<string | number>,
-			callback: Function,
-			releaseCallback?: Function
-		): number;
+		shortcut(
+			/**
+			 * Array of keycodes.
+			 */
+			keys: number[],
+			/**
+			 * Callback for when shortcut pressedю
+			 */
+			onDown: (keys: number[]) => void,
+			/**
+			 * Callback for when shortcut releasedю
+			 */
+			onUp?: (keys: number[]) => void
+		): (() => void);
 		
 		/**
-		 * Unregister shortcut by ShortcutId
-		 * @param {number} shortcutId
+		 * Unregister shortcut via its key codes.
 		 */
-		unregisterShortcut(shortcutId: number): void;
+		removeShortcut(keys: number[]): void;
 		
 		/**
-		 * Unregister shortcut via its key codes
-		 * @param {Array<string|number>} keys
+		 * Unregister all shortcuts.
 		 */
-		unregisterShortcut(keys: Array<string | number>): void;
-		
-		/**
-		 * Unregister all shortcuts
-		 */
-		unregisterAllShortcuts(): void;
+		clearShortcuts(): void;
 	};
 	
 	const iohook: IoHook;
