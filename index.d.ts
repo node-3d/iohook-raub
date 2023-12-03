@@ -26,16 +26,6 @@ declare module "iohook-raub" {
 		stop(): void;
 		
 		/**
-		 * Manual native code load. Call this function only if unload called before
-		 */
-		load(): void;
-		
-		/**
-		 * Unload native code and free memory and system hooks
-		 */
-		unload(): void;
-		
-		/**
 		 * Enable/Disable stdout debug.
 		 */
 		setDebug(mode: boolean): void;

@@ -1,20 +1,21 @@
 'use strict';
 
 const assert = require('node:assert').strict;
-const { describe, it } = require('node:test');
+const { describe, it, after } = require('node:test');
 
 const iohook = require('..');
 
+const methods = [
+	'start', 'stop', 'setDebug', 'useRawcode', 'registerShortcut',
+	'unregisterShortcut', 'unregisterShortcut', 'unregisterAllShortcuts',
+];
 
 describe('iohook', () => {
-	const context = new AudioContext();
+	after(iohook.stop);
 	
-	it('creates an AudioContext instance', () => {
-		assert.ok(context instanceof AudioContext);
-	});
-	
-	it('creates an OscillatorNode instance', () => {
-		const oscillator = context.createOscillator();
-		assert.strictEqual(typeof oscillator, 'object');
+	methods.forEach((name) => {
+		it(`exports method #${name}`, () => {
+			assert.ok(iohook[name]);
+		});
 	});
 });

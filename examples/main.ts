@@ -28,7 +28,7 @@ iohook.on('mousewheel', (msg) => {
 });
 
 iohook.on('mousemove', (msg) => {
-  console.log(msg);
+  // console.log(msg);
 });
 
 iohook.on('mousedrag', (msg) => {
@@ -53,4 +53,21 @@ iohook.on('mouseup', (event) => console.log(event));
 iohook.start();
 // iohook.setDebug(true); // Uncomment this line for see all debug information from iohook
 
-console.log('Hook started. Try type something or move mouse');
+console.log('Hook started. Try input.');
+
+
+setTimeout(() => {
+  iohook.stop();
+  console.log('Hook stopped for 3 sec.');
+  
+  setTimeout(() => {
+    iohook.start();
+    console.log('Hook RESTARTED.');
+    
+    setTimeout(() => {
+      console.log('Hook stopped.');
+      iohook.stop();
+    }, 3000);
+  }, 3000);
+}, 3000);
+

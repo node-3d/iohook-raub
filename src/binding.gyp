@@ -9,6 +9,7 @@
 		'sources': [
 			'cpp/bindings.cpp',
 			'cpp/iohook.cpp',
+			'cpp/hook-worker.cpp',
 		],
 		'include_dirs': [
 			'<(uio_include)',
