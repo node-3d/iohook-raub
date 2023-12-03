@@ -71,6 +71,12 @@ jobs:
         if: matrix.os == 'macos-11'
         run: pip install setuptools
 
+      - name: Install dependency - Linux
+        if: matrix.os == 'ubuntu-20.04'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq libxtst-dev libxt-dev libxinerama-dev libx11-xcb-dev libxkbcommon-dev libxkbcommon-x11-dev
+
       - name: Build Current Binary
         run: npm run build
 
