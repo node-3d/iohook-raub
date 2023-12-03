@@ -44,7 +44,7 @@ jobs:
         if: matrix.os == 'ubuntu-20.04'
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -qq libx11-xcb libxkbcommon libxkbcommon-x11
+          sudo apt-get install -qq libx11-xcb-dev libxkbcommon-dev libxkbcommon-x11-dev
 
       - name: Build Current Binary
         run: npm run build
