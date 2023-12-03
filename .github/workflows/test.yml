@@ -53,6 +53,6 @@ jobs:
         if: matrix.os == 'ubuntu-20.04'
         run: xvfb-run --auto-servernum npm test
 
-      - name: Run Unit Tests
-        if: matrix.os != 'windows-2022' && matrix.os != 'ubuntu-20.04'
+      - name: Run Unit Tests - Windows
+        if: matrix.os == 'windows-2022'
         run: npm test
