@@ -43,6 +43,12 @@ jobs:
       - name: Build Current Binary
         run: npm run build
 
+      - name: Install dependency - Linux
+        if: matrix.os == 'ubuntu-20.04'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq libx11-xcb-dev
+
       - name: Run Unit Tests - Linux
         if: matrix.os == 'ubuntu-20.04'
         run: xvfb-run --auto-servernum npm test
