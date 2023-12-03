@@ -25,7 +25,7 @@
 					"-Wl,-rpath,'$$ORIGIN'",
 					"-Wl,-rpath,'$$ORIGIN/../node_modules/deps-uiohook-raub/<(bin)'",
 					"-Wl,-rpath,'$$ORIGIN/../../deps-uiohook-raub/<(bin)'",
-					'-luiohook', '-lX11', '-lXt', '-lxcb',
+					'-luiohook', '-lX11', '-lXt', '-lxcb', '-lX11-xcb',
 				],
 				'defines': ['__linux__'],
 			}],
