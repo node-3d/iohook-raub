@@ -4,7 +4,9 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"start": "npx ts-node-esm ./main.ts"
+		"start": "npx ts-node-esm ./log-keys.ts",
+		"log-keys": "npx ts-node-esm ./log-keys.ts",
+		"tmp-disable": "npx ts-node-esm ./tmp-disable.ts"
 	},
 	"dependencies": {
 		"iohook-raub": "file:..",

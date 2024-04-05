@@ -36,6 +36,17 @@ bool logger_proc(unsigned int level, const char *format, ...) {
 	return status;
 }
 
+constexpr size_t MAX_STORED_COUNT = 256;
+uiohook_event _storedEvents[MAX_STORED_COUNT];
+size_t _storedCount = 0;
+
+static inline uiohook_event *_keepEvent(const uiohook_event * const event) {
+	uiohook_event *ptr = &(_storedEvents[_storedCount]);
+	_storedCount = (_storedCount + 1) % MAX_STORED_COUNT;
+	memcpy(ptr, event, sizeof(uiohook_event));
+	return ptr;
+}
+
 // Executes on the same thread that hook_run() is called from.
 void dispatch_proc(uiohook_event * const event) {
 	switch (event->type) {
@@ -48,10 +59,7 @@ void dispatch_proc(uiohook_event * const event) {
 		case EVENT_MOUSE_MOVED:
 		case EVENT_MOUSE_DRAGGED:
 		case EVENT_MOUSE_WHEEL:
-			uiohook_event event_copy;
-			memcpy(&event_copy, event, sizeof(uiohook_event));
-			// zqueue.push(event_copy);
-			callTsFn(&event_copy);
+			callTsFn(_keepEvent(event));
 			break;
 		default: break;
 	}
