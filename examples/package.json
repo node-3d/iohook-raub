@@ -6,6 +6,7 @@
 	"scripts": {
 		"start": "npx ts-node-esm ./log-keys.ts",
 		"log-keys": "npx ts-node-esm ./log-keys.ts",
+		"log-mouse": "npx ts-node-esm ./log-mouse.ts",
 		"tmp-disable": "npx ts-node-esm ./tmp-disable.ts"
 	},
 	"dependencies": {
