@@ -1,7 +1,7 @@
 {
 	"author": "Luis Blanco <luisblanco1337@gmail.com>",
 	"name": "iohook-raub",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Node.js IO hook",
 	"license": "MIT",
 	"main": "index.js",
