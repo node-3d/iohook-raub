@@ -1,17 +1,15 @@
-'use strict';
-
-import iohook from 'iohook-raub';
+import { iohook } from '@node-3d/iohook';
 
 iohook.on('keypress', (msg) => {
-  console.log('keypress', msg);
+	console.log('keypress', msg);
 });
 
 iohook.on('keydown', (msg) => {
-  console.log('keydown', msg);
+	console.log('keydown', msg);
 });
 
 iohook.on('keyup', (msg) => {
-  console.log('keyup', msg);
+	console.log('keyup', msg);
 });
 
 iohook.start();
@@ -20,6 +18,5 @@ iohook.start();
 console.log('Hook started.');
 
 setInterval(() => {
-  console.log('Hook is working...');
+	console.log('Hook is working...');
 }, 5000);
-

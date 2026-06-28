@@ -4,14 +4,16 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"start": "npx ts-node-esm ./log-keys.ts",
-		"log-keys": "npx ts-node-esm ./log-keys.ts",
-		"log-mouse": "npx ts-node-esm ./log-mouse.ts",
-		"tmp-disable": "npx ts-node-esm ./tmp-disable.ts"
+		"start": "node ./log-keys.ts",
+		"log-keys": "node ./log-keys.ts",
+		"log-mouse": "node ./log-mouse.ts",
+		"tmp-disable": "node ./tmp-disable.ts"
 	},
 	"dependencies": {
-		"iohook-raub": "file:..",
-		"tsconfig-paths": "^4.2.0",
-		"ts-node": "^10.9.1"
+		"@node-3d/iohook": "file:.."
+	},
+	"engines": {
+		"node": ">=24.13.0",
+		"npm": ">=11.6.2"
 	}
 }

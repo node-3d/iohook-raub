@@ -1,21 +1,19 @@
-'use strict';
-
-import iohook from 'iohook-raub';
+import { iohook } from '@node-3d/iohook';
 
 iohook.on('mousedown', (msg) => {
-  console.log('mousedown', msg);
+	console.log('mousedown', msg);
 });
 
 iohook.on('mouseup', (msg) => {
-  console.log('mouseup', msg);
+	console.log('mouseup', msg);
 });
 
 iohook.on('mousemove', (msg) => {
-  console.log('mousemove', msg);
+	console.log('mousemove', msg);
 });
 
 iohook.on('mousedrag', (msg) => {
-  console.log('mousedrag', msg);
+	console.log('mousedrag', msg);
 });
 
 iohook.start();
@@ -24,6 +22,5 @@ iohook.start();
 console.log('Hook started.');
 
 setInterval(() => {
-  console.log('Hook is working...');
+	console.log('Hook is working...');
 }, 5000);
-
